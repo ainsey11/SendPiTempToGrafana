@@ -1,0 +1,9 @@
+[Unit]
+Description=Send Temperature value from single sensor into InfluxDB
+
+[Service]
+Type=simple
+ExecStart=/bin/bash /opt/temperature/boot.sh 
+
+[Install]
+WantedBy=multi-user.target
