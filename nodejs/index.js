@@ -31,17 +31,24 @@ client.schema('http', fieldSchema, tagSchema, {
 // Only works with a single sensor for the moment in time, I just want to see if this even works
 // It will just find the first sensor connected to the pi
 
-const SENSOR_VAL = sensor.readSimpleC();
-console.log(`${SENSOR_VAL} degC`);
 
-client.write('http')
-  .tag({
-    spdy: 'sensor',
-    method: 'GET',
-    type: '1',  
-  })
-  .field({
-    value: SENSOR_VAL
-  })
-  .then(() => console.info('write point success'))
-  .catch(console.error);
+function SendTemptoInflux(client){
+  const SENSOR_VAL = sensor.readSimpleC();
+  console.log(`${SENSOR_VAL} degC`);
+  
+  client.write('http')
+    .tag({
+      spdy: 'sensor',
+      method: 'GET',
+      type: '1',  
+    })
+    .field({
+      value: SENSOR_VAL
+    })
+    .then(() => console.info('write point success'))
+    .catch(console.error);
+}
+
+setInterval(function() {
+  SendTemptoInflux(client);
+}, 5000);
