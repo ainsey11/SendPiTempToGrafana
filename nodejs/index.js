@@ -4,7 +4,7 @@ const Influx = require('influxdb-nodejs');
 const INFLUX_HOST = process.env.INFLUX_HOST || '127.0.0.1'
 const INFLUX_PORT = process.env.INFLUX_PORT || 8086
 const INFLUX_DB = process.env.INFLUX_DB || 'mydb'
-
+const INTERVAL = process.env.INTERVAL || 5000
 
 // Set up Influx Connection and schema
 const client = new Influx(`http://${INFLUX_HOST}:${INFLUX_PORT}/${INFLUX_DB}`);
@@ -51,4 +51,4 @@ function SendTemptoInflux(client){
 
 setInterval(function() {
   SendTemptoInflux(client);
-}, 5000);
+}, INTERVAL);
