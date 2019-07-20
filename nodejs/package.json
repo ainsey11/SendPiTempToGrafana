@@ -1,0 +1,15 @@
+{
+  "name": "temptoinflux",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "ds18b20-raspi": "^0.3.3",
+    "influxdb-nodejs": "^3.1.0"
+  }
+}
